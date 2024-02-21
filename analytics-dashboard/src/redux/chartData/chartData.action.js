@@ -1,6 +1,7 @@
 import axios from "axios"
 import { GET_CHART_DATA_ERROR, GET_CHART_DATA_LOADING, GET_CHART_DATA_SUCCESS } from "./chartData.actionTypes";
-
+const baseURL=process.env.REACT_APP_BASE_URL;
+console.log(baseURL);
 export const getData = (year) => async (dispatch) => {
     dispatch({ type: GET_CHART_DATA_LOADING })
     try {
