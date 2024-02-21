@@ -1,4 +1,4 @@
-import { Flex, Select } from "@chakra-ui/react";
+import { Flex, Select, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -10,24 +10,17 @@ const SelectYear = () => {
     setCurrentYear(searchParams.get("year") || "2020");
   }, [searchParams]);
   return (
-    <Flex
-      gap={"12px"}
-      fontSize={{ base: "16px", md: "24px", lg: "32px" }}
-      p={"12px 20px"}
-      cursor={"pointer"}
-      alignItems={"center"}
-    >
+    <Flex gap={"12px"} cursor={"pointer"} alignItems={"center"}>
+      <Text as="span">Select Year : </Text>
       <Select
-      placeholder="Select Year"
+        
         value={year}
         onChange={(e) => setSearchParms({ year: e.target.value })}
       >
-        
         <option value="2020">2020</option>
         <option value="2021">2021</option>
         <option value="2022">2022</option>
         <option value="2023">2023</option>
-        
       </Select>
     </Flex>
   );

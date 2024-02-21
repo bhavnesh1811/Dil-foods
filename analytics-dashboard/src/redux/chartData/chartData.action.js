@@ -1,11 +1,10 @@
 import axios from "axios"
 import { GET_CHART_DATA_ERROR, GET_CHART_DATA_LOADING, GET_CHART_DATA_SUCCESS } from "./chartData.actionTypes";
-const baseURL=process.env.REACT_APP_BASE_URL;
-console.log(baseURL);
+
 export const getData = (year) => async (dispatch) => {
     dispatch({ type: GET_CHART_DATA_LOADING })
     try {
-        let res = await axios.get(`https://dil-foods.onrender.com/data?year=${year}`);
+        let res = await axios.get(`${process.env.REACT_APP_BASE_URL}?year=${year}`);
         dispatch({ type: GET_CHART_DATA_SUCCESS, payload: res.data })
 
     } catch (error) {
