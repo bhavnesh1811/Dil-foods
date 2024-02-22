@@ -43,13 +43,10 @@ git clone https://github.com/bhavnesh1811/Dil-foods.git
 ### Step-2 Navigate to the project directory:
 cd Dil-foods/analytics-dashboard/
 
-### Step-3 Create a .env file and add the following line:
-REACT_APP_BASE_URL="https://dil-foods.onrender.com"
-
-### Step-4 Install the required packages:
+### Step-3 Install the required packages:
 npm install
 
-### Step-5 Run the Project:
+### Step-4 Run the Project:
 npm run start
 
 ## Snaps
