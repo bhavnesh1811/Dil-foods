@@ -1,7 +1,3 @@
-# Project Title
-
-Brief description of your project.
-
 ## Table of Contents
 
 - [Project Title](#project-title)
