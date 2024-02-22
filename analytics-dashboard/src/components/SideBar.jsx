@@ -6,6 +6,7 @@ import {
   Drawer,
   DrawerContent,
   useDisclosure,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import BarChart from "./BarChart";
 import LineChart from "./LineChart";
@@ -22,6 +23,7 @@ import { generateRandomColor } from "../scripts/generateColors";
 
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const isMobile = useBreakpointValue({ base: true, sm: false });
   const dispatch = useDispatch();
   const { loading, chartData, topSelling } = useSelector(
     (store) => store.chartData
@@ -122,12 +124,21 @@ const Sidebar = () => {
         ) : (
           <>
             {window.location.pathname.includes("bar") ? (
-              <BarChart data={salesData} aspectRatio={1/1} />
+              isMobile ? (
+                <BarChart data={salesData} aspectRatio={1 / 0.72} />
+              ) : (
+                <BarChart data={salesData} aspectRatio={1 / 0.4} />
+              )
             ) : window.location.pathname.includes("line") ? (
-              <LineChart data={salesData} aspectRatio={1/1}/>
+              isMobile ? (
+                <LineChart data={salesData} aspectRatio={1 / 0.72} />
+              ) : (
+                <LineChart data={salesData} aspectRatio={1 / 0.4} />
+              )
+             
             ) : window.location.pathname.includes("pie") ? (
-              <Flex maxH={{ xl: "60vh" }} justifyContent={"center"}>
-                <PieChart data={salesData}  />
+              <Flex maxH={{ md: "75vh" }} justifyContent={"center"}>
+                <PieChart data={salesData} />
               </Flex>
             ) : (
               <Ecommerce chartData={chartData} topSelling={topSelling} />

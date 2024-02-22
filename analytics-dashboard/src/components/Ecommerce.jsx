@@ -94,6 +94,7 @@ const Ecommerce = ({ chartData, topSelling }) => {
           boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
           borderRadius={"12px"}
           p="12px"
+          
         >
           <BarChart data={barChartData}/>
         </Box>
