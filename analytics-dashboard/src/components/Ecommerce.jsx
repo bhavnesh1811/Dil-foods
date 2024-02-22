@@ -9,15 +9,8 @@ import { BsPerson } from "react-icons/bs";
 import { FcSalesPerformance } from "react-icons/fc";
 import { GiReceiveMoney } from "react-icons/gi";
 import { generateRandomColorArray } from "../scripts/generateColors";
-const topSellingProducts = [
-  { name: "Bhole ke Chole", salesCount: 125 },
-  { name: "Dil Punjabi", salesCount: 98 },
-  { name: "The Chaat Cult", salesCount: 87 },
-  { name: "Kichdi Bar", salesCount: 76 },
-  { name: "Bihari Bowl", salesCount: 64 },
-];
 
-const Ecommerce = ({ chartData }) => {
+const Ecommerce = ({ chartData, topSelling }) => {
   const metrics = calculateMetrics(chartData);
   const pieChartData = {
     labels: chartData?.map((data) => data.month),
@@ -31,12 +24,12 @@ const Ecommerce = ({ chartData }) => {
       },
     ],
   };
-  const topSelling = {
-    labels: topSellingProducts?.map((data) => data.name),
+  const topSellingProduct = {
+    labels: topSelling?.map((data) => data.name),
     datasets: [
       {
         label: "Total Sales",
-        data: topSellingProducts?.map((data) => data.salesCount),
+        data: topSelling?.map((data) => data.salesCount),
         backgroundColor: generateRandomColorArray(),
         borderColor: "black",
         borderWidth: 2,
@@ -82,14 +75,14 @@ const Ecommerce = ({ chartData }) => {
           icon={<BsPerson size={"2em"} color="blue" />}
         />
         <StatsCard
-          title={"Total Sales"}
-          stat={metrics.totalSales}
-          icon={<FcSalesPerformance size={"2em"} />}
-        />
-        <StatsCard
           title={"Total Revenue"}
           stat={" $ " + metrics.totalRevenue}
           icon={<GiReceiveMoney size={"2em"} />}
+        />
+        <StatsCard
+          title={"Total Sales"}
+          stat={metrics.totalSales}
+          icon={<FcSalesPerformance size={"2em"} />}
         />
       </SimpleGrid>
       <SimpleGrid
@@ -121,39 +114,38 @@ const Ecommerce = ({ chartData }) => {
         </Box>
       </SimpleGrid>
 
-      <Flex my="12px" gap="16px" direction={{base:"column",lg:"row"}}>
+      <Flex my="12px" gap="16px" direction={{ base: "column", lg: "row" }}>
         <Box
           boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
           p={"12px"}
           borderRadius={"12px"}
-          w={{base:"100%",lg:"40%"}}
+          w={{ base: "100%", lg: "40%" }}
         >
-          <PieChart data={topSelling} />
+          <PieChart data={topSellingProduct} />
         </Box>
         <Box
-          w={{base:"100%",lg:"58%"}}
+          w={{ base: "100%", lg: "58%" }}
           boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
           p={"12px"}
           borderRadius={"12px"}
         >
-
-        <SimpleGrid mt="16px" rows={1} spacing={{ base: 4, lg: 8 }}>
-          <StatsCard
-            title={"Average Users Visited"}
-            stat={Math.floor(metrics.averageUsersPerMonth)}
-            icon={<BsPerson size={"3em"} color="blue" />}
-          />
-          <StatsCard
-            title={"Average Sales"}
-            stat={Math.floor(metrics.averageSalePerMonth)}
-            icon={<FcSalesPerformance size={"3em"} />}
-          />
-          <StatsCard
-            title={"Average Revenue"}
-            stat={" $ " + Math.floor(metrics.averageRevenuePerMonth)}
-            icon={<GiReceiveMoney size={"3em"} />}
-          />
-        </SimpleGrid>
+          <SimpleGrid mt="16px" rows={1} spacing={{ base: 4, lg: 8 }}>
+            <StatsCard
+              title={"Average Users Visited"}
+              stat={Math.floor(metrics.averageUsersPerMonth)}
+              icon={<BsPerson size={"3em"} color="blue" />}
+            />
+            <StatsCard
+              title={"Average Sales"}
+              stat={Math.floor(metrics.averageSalePerMonth)}
+              icon={<FcSalesPerformance size={"3em"} />}
+            />
+            <StatsCard
+              title={"Average Revenue"}
+              stat={" $ " + Math.floor(metrics.averageRevenuePerMonth)}
+              icon={<GiReceiveMoney size={"3em"} />}
+            />
+          </SimpleGrid>
         </Box>
       </Flex>
     </>

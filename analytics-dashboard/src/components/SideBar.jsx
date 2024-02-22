@@ -12,7 +12,7 @@ import LineChart from "./LineChart";
 import PieChart from "./PieChart";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { getData } from "../redux/chartData/chartData.action";
+import { getData, getTopSelling } from "../redux/chartData/chartData.action";
 import Loader from "./Loader";
 import SelectYear from "./SelectYear";
 import Ecommerce from "./Ecommerce";
@@ -23,7 +23,9 @@ import { generateRandomColor } from "../scripts/generateColors";
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
-  const { loading, chartData } = useSelector((store) => store.chartData);
+  const { loading, chartData, topSelling } = useSelector(
+    (store) => store.chartData
+  );
   const [searchParams] = useSearchParams();
   const [year, setCurrentYear] = useState(searchParams.get("year") || "2020");
   const [salesData, setSalesData] = useState({
@@ -55,6 +57,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     dispatch(getData(year));
+    dispatch(getTopSelling(year));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year]);
 
@@ -112,9 +115,8 @@ const Sidebar = () => {
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
-        <Flex justifyContent={{ base: "flex-start", lg: "space-between" }}>
-          <SelectYear />
-        </Flex>
+        <SelectYear />
+
         {loading ? (
           <Loader />
         ) : (
@@ -129,11 +131,11 @@ const Sidebar = () => {
                   <LineChart data={salesData} />
                 </Box>
               ) : window.location.pathname.includes("pie") ? (
-                <Flex maxH={{ xl: "80vh" }} justifyContent={"center"}>
+                <Flex maxH={{ xl: "80vh" }} justifyContent={"center"} >
                   <PieChart data={salesData} />
                 </Flex>
               ) : (
-                <Ecommerce chartData={chartData} />
+                <Ecommerce chartData={chartData} topSelling={topSelling} />
               )}
             </Box>
           </>

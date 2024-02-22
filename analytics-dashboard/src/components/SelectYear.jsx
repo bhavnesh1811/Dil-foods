@@ -13,10 +13,11 @@ const SelectYear = () => {
     <Flex gap={"12px"} cursor={"pointer"} alignItems={"center"}>
       <Text as="span">Select Year : </Text>
       <Select
-        
+        maxW={{base:"30%",md:"20%"}}
         value={year}
         onChange={(e) => setSearchParms({ year: e.target.value })}
       >
+        
         <option value="2020">2020</option>
         <option value="2021">2021</option>
         <option value="2022">2022</option>
