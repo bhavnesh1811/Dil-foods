@@ -95,7 +95,7 @@ const Ecommerce = ({ chartData, topSelling }) => {
           borderRadius={"12px"}
           p="12px"
         >
-          <BarChart data={barChartData} />
+          <BarChart data={barChartData}/>
         </Box>
         <Box
           boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
@@ -110,7 +110,7 @@ const Ecommerce = ({ chartData, topSelling }) => {
           p={"12px"}
           borderRadius={"12px"}
         >
-          <BarChart data={pieChartData} />
+          <BarChart data={pieChartData}/>
         </Box>
       </SimpleGrid>
 
