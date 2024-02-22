@@ -89,6 +89,7 @@ const Ecommerce = ({ chartData, topSelling }) => {
         my="16px"
         columns={{ base: 1, lg: 3 }}
         spacing={{ base: 4, lg: 8 }}
+        
       >
         <Box
           boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
@@ -96,14 +97,14 @@ const Ecommerce = ({ chartData, topSelling }) => {
           p="12px"
           
         >
-          <BarChart data={barChartData}/>
+          <BarChart data={barChartData} aspectRatio={1/1}/>
         </Box>
         <Box
           boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
           borderRadius={"12px"}
           p="12px"
         >
-          <LineChart data={lineChartData} />
+          <LineChart data={lineChartData} aspectRatio={1/1} />
         </Box>
 
         <Box
@@ -111,7 +112,7 @@ const Ecommerce = ({ chartData, topSelling }) => {
           p={"12px"}
           borderRadius={"12px"}
         >
-          <BarChart data={pieChartData}/>
+          <BarChart data={pieChartData} aspectRatio={1/1}/>
         </Box>
       </SimpleGrid>
 
