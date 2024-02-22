@@ -112,7 +112,7 @@ const Sidebar = () => {
           <SideBarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      {/* mobilenav */}
+     
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         <SelectYear />
@@ -121,23 +121,21 @@ const Sidebar = () => {
           <Loader />
         ) : (
           <>
-            <Box>
-              {window.location.pathname.includes("bar") ? (
-                <Box>
-                  <BarChart data={salesData} />
-                </Box>
-              ) : window.location.pathname.includes("line") ? (
-                <Box>
-                  <LineChart data={salesData} />
-                </Box>
-              ) : window.location.pathname.includes("pie") ? (
-                <Flex maxH={{ xl: "80vh" }} justifyContent={"center"} >
-                  <PieChart data={salesData} />
-                </Flex>
-              ) : (
-                <Ecommerce chartData={chartData} topSelling={topSelling} />
-              )}
-            </Box>
+            {window.location.pathname.includes("bar") ? (
+              <Box minH={"60vh"}>
+                <BarChart data={salesData}/>
+              </Box>
+            ) : window.location.pathname.includes("line") ? (
+              
+                <LineChart data={salesData} />
+              
+            ) : window.location.pathname.includes("pie") ? (
+              <Flex maxH={{ xl: "80vh" }} justifyContent={"center"}>
+                <PieChart data={salesData} />
+              </Flex>
+            ) : (
+              <Ecommerce chartData={chartData} topSelling={topSelling} />
+            )}
           </>
         )}
       </Box>

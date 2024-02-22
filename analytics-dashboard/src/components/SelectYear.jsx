@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const SelectYear = () => {
-  const [searchParams, setSearchParms] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [year, setCurrentYear] = useState(searchParams.get("year") || "2020");
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const SelectYear = () => {
       <Select
         maxW={{base:"30%",md:"20%"}}
         value={year}
-        onChange={(e) => setSearchParms({ year: e.target.value })}
+        onChange={(e) => setSearchParams({ year: e.target.value })}
       >
         
         <option value="2020">2020</option>
